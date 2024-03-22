@@ -1,17 +1,23 @@
-import React from 'react'
+import React from 'react';
 
 type Props = {
-    value?:string
-    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+  value?: string;
+  onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+};
 
-function Todo({value,onInput}: Props) {
+function Todo({value, onInput, onKeyDown}: Props) {
   return (
     <div>
-    <input type='checkbox' />
-    <input type="text" value={value} onInput={onInput} />
+      <input type="checkbox" />
+      <input
+        type="text"
+        value={value}
+        onInput={onInput}
+        onKeyDown={onKeyDown}
+      />
     </div>
-  )
+  );
 }
 
-export default Todo
+export default Todo;

@@ -16,6 +16,10 @@ export default function Home() {
     console.log(titleValue, todoValues);
   }
 
+  function add(){
+    
+  }
+
   return (
     <section>
       <Title value={titleValue} onInput={e=>{

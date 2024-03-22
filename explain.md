@@ -23,3 +23,4 @@ https://react.dev/learn/start-a-new-react-project#nextjs-pages-router
 - i 클릭 : 하단 insert 떴는지 확인
 - 메시지 입력(한글 가능) 후 esc 클릭
 - insert 사라졌는지 확인 후 :wq 엔터
+- git push origin master 엔터

@@ -28,6 +28,8 @@ export default function Home() {
     }
   }
 
+  function focusAt(index: number) {}
+
   return (
     <section>
       <Title

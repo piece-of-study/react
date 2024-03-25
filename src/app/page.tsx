@@ -18,17 +18,23 @@ export default function Home() {
     console.log(titleValue, todoValues);
   }
 
-  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>, i: number) {
     if (e.key === 'Enter') {
       console.log('enter');
 
       // String a =
       let newTodoValues = todoValues.concat('');
       setTodoValues(newTodoValues);
+
+      setTimeout(() => {
+        focusAt(i + 1);
+      }, 50);
     }
   }
 
-  function focusAt(index: number) {}
+  function focusAt(index: number) {
+    document.getElementsByClassName('todo-input')[index].focus();
+  }
 
   return (
     <section>
@@ -48,7 +54,9 @@ export default function Home() {
               temp[i] = e.currentTarget.value;
               setTodoValues(temp);
             }}
-            onKeyDown={onKeyDown}
+            onKeyDown={e => {
+              onKeyDown(e, i);
+            }}
           />
         );
       })}

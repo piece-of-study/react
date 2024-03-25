@@ -11,6 +11,7 @@ function Todo({value, onInput, onKeyDown}: Props) {
     <div>
       <input type="checkbox" />
       <input
+        className="todo-input"
         type="text"
         value={value}
         onInput={onInput}

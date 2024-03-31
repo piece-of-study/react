@@ -36,8 +36,9 @@ export default function Home() {
       }, 50);
     }
   }
-
+  // 포커스 함수
   function focusAt(index: number) {
+    // 원하는 순서의 인풋태그에 포커스 하겠다. 다른데서 호출해서 사용
     document.getElementsByClassName('todo-input')[index].focus();
   }
 
@@ -46,7 +47,7 @@ export default function Home() {
       <Title
         value={titleValue}
         onInput={e => {
-          setTitleValue(e.currentTarget.value);
+          setTitleValue(e.currentTarget.value); // 제목값을 넣어준다.
         }}
       />
       {todoValues.map((_, i) => {
@@ -57,7 +58,7 @@ export default function Home() {
             onInput={e => {
               let temp = Array.from(todoValues);
               temp[i] = e.currentTarget.value;
-              setTodoValues(temp);
+              setTodoValues(temp); // 현재 값을 넣어준다.
             }}
             onKeyDown={e => {
               onKeyDown(e, i);

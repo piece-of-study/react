@@ -56,11 +56,12 @@ export default function Home() {
             key={i}
             value={todoValues[i]}
             onInput={e => {
-              let temp = Array.from(todoValues);
-              temp[i] = e.currentTarget.value;
+              let temp: string[] = Array.from(todoValues); // 리액트는 입력해도 주소값이 같으면 같은걸로 인식해서 화면이 바뀌지 않는다. 그래서 array.from을 쓰면 값을 복사할 수 있다. 주소값이 다르게. todoValues는 빈공간 10개 위에서 정의함.
+              temp[i] = e.currentTarget.value; //  지금 입력한 깂이 i번째에 들어간다.
               setTodoValues(temp); // 현재 값을 넣어준다.
             }}
             onKeyDown={e => {
+              // 키보드를 어떤걸 눌렀는지 알기위해 추가한 함수, 엔터 누름 여부를 위함
               onKeyDown(e, i);
             }}
           />

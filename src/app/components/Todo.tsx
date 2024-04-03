@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {ButtonHTMLAttributes} from 'react';
 
 // 변수들의 타입 명시
 type Props = {
   value?: string;
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  remove: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-function Todo({value, onInput, onKeyDown}: Props) {
+function Todo({value, onInput, onKeyDown, remove}: Props) {
   return (
     <div>
       <input type="checkbox" />
@@ -18,6 +19,9 @@ function Todo({value, onInput, onKeyDown}: Props) {
         onInput={onInput} // 입력창에 뭘 입력하면 함수
         onKeyDown={onKeyDown} // 키 누를때 함수
       />
+      <button type="button" onClick={remove}>
+        삭제
+      </button>
     </div>
   );
 }

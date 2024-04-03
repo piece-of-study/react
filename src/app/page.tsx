@@ -4,19 +4,29 @@ import Image from 'next/image';
 import {useState} from 'react';
 import Title from './components/Title';
 import Todo from './components/Todo';
+import {HtmlContext} from 'next/dist/server/future/route-modules/app-page/vendored/contexts/entrypoints';
 
 function hello() {}
 
 export default function Home() {
-  const todoSize = 10; // 기본 체크리스트 개수
   const [titleValue, setTitleValue] = useState<string>(); //제목값 스트링타입을 쓰겠다
-  const [todoValues, setTodoValues] = useState<string[]>( // 체크리스트값 스트링타입을 쓰겠다
-    new Array(todoSize).fill(''),
-  );
+  const [todoValues, setTodoValues] = useState<string[]>(new Array()); // 체크리스트값 스트링타입을 쓰겠다
 
   // 저장하면 로그찍기
   function save() {
     console.log(titleValue, todoValues);
+  }
+
+  function add(i: number) {
+    // 새로운 체크리스트 추가
+    let newTodoValues = todoValues.concat(''); // 공백 체크리스트 추가됨
+    // 체크리스드 공백값 넣어주기
+    setTodoValues(newTodoValues);
+
+    // 50밀리세컨드 0.05초 후에 포커스를 다음 체크리스트에 해라.
+    setTimeout(() => {
+      focusAt(i + 1);
+    }, 50);
   }
 
   // 키를 누르면 발생하는 함수
@@ -24,24 +34,24 @@ export default function Home() {
     // 엔터키를 누르면
     if (e.key === 'Enter') {
       console.log('enter');
-
-      // 새로운 체크리스트 추가
-      let newTodoValues = todoValues.concat(''); // 공백 체크리스트 추가됨
-      // 체크리스드 공백값 넣어주기
-      setTodoValues(newTodoValues);
-
-      // 50밀리세컨드 0.05초 후에 포커스를 다음 체크리스트에 해라.
-      setTimeout(() => {
-        focusAt(i + 1);
-      }, 50);
+      add(i);
     }
   }
+
   // 포커스 함수
   function focusAt(index: number) {
     // 원하는 순서의 인풋태그에 포커스 하겠다. 다른데서 호출해서 사용
     document.getElementsByClassName('todo-input')[index].focus();
   }
 
+  function remove(index: number) {}
+
+  function clickAdd(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    // 지금 데이터 개수보다 하나 큰 개수로 투두리스트 생성
+    const nowDataCount: number = todoValues.length; // 지금 데이터 개수
+    const todoListCount: number = nowDataCount;
+    add(todoListCount);
+  }
   return (
     <section>
       <Title
@@ -50,6 +60,11 @@ export default function Home() {
           setTitleValue(e.currentTarget.value); // 제목값을 넣어준다.
         }}
       />
+      <div>
+        <button type="button" onClick={clickAdd}>
+          추가
+        </button>
+      </div>
       {todoValues.map((_, i) => {
         return (
           <Todo
@@ -64,11 +79,14 @@ export default function Home() {
               // 키보드를 어떤걸 눌렀는지 알기위해 추가한 함수, 엔터 누름 여부를 위함
               onKeyDown(e, i);
             }}
+            remove={e => {
+              remove(i);
+            }}
           />
         );
       })}
       <button type="button" onClick={save}>
-        언제자시발
+        저장
       </button>
     </section>
   );

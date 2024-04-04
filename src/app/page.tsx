@@ -44,7 +44,11 @@ export default function Home() {
     document.getElementsByClassName('todo-input')[index].focus();
   }
 
-  function remove(index: number) {}
+  function remove(i: number) {
+    let nowValue: string[] = Array.from(todoValues);
+    let temp: string[] = nowValue.splice(i, 1);
+    setTodoValues(nowValue);
+  }
 
   function clickAdd(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     // 지금 데이터 개수보다 하나 큰 개수로 투두리스트 생성

@@ -41,12 +41,16 @@ export default function Home() {
   // 포커스 함수
   function focusAt(index: number) {
     // 원하는 순서의 인풋태그에 포커스 하겠다. 다른데서 호출해서 사용
-    document.getElementsByClassName('todo-input')[index].focus();
+    let a = document.querySelectorAll('.todo-input')[index] as HTMLElement;
+    a.focus();
   }
 
   function remove(i: number) {
+    // 체크리스트 배열을 가져온다. 다른 값이라고 인식해서 새로고침하기위해  Array.from 으로 묶는다.
     let nowValue: string[] = Array.from(todoValues);
-    let temp: string[] = nowValue.splice(i, 1);
+    // 가져오느 체크리스트에서 제외하고싶은 배열번호, 그로부터 몇개 삭제. splice함수를 사용한다.
+    nowValue.splice(i, 1);
+    // 수정한 체크리스트를 세터로 넣는다.
     setTodoValues(nowValue);
   }
 

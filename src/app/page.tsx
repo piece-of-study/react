@@ -23,9 +23,9 @@ export default function Home() {
     // 체크리스드 공백값 넣어주기
     setTodoValues(newTodoValues);
 
-    // 50밀리세컨드 0.05초 후에 포커스를 다음 체크리스트에 해라.
+    // 50밀리세컨드 0.05초 후에 포커스를 마지막 체크리스트에 해라.
     setTimeout(() => {
-      focusAt(i + 1);
+      focusAt(i);
     }, 50);
   }
 
@@ -35,6 +35,11 @@ export default function Home() {
     if (e.key === 'Enter') {
       console.log('enter');
       add(i);
+
+      // 50밀리세컨드 0.05초 후에 포커스를 다음 체크리스트에 해라.
+      setTimeout(() => {
+        focusAt(i + 1);
+      }, 50);
     }
   }
 

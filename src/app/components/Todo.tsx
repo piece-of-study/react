@@ -1,4 +1,5 @@
 import React, {ButtonHTMLAttributes} from 'react';
+import './Todo.css';
 
 // 변수들의 타입 명시
 type Props = {
@@ -11,7 +12,8 @@ type Props = {
 function Todo({value, onInput, onKeyDown, remove}: Props) {
   return (
     <div>
-      <input type="checkbox" />
+      <input type="checkbox" id="cb1" />
+      <label htmlFor="cb1" className="checkboxLabel"></label>
       <input
         className="todo-input"
         type="text"

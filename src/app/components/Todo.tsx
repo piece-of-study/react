@@ -7,12 +7,13 @@ type Props = {
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   remove: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  id: number;
 };
 
-function Todo({value, onInput, onKeyDown, remove}: Props) {
+function Todo({id, value, onInput, onKeyDown, remove}: Props) {
   return (
     <div>
-      <input type="checkbox" id="cb1" />
+      <input type="checkbox" id={id} />
       <label htmlFor="cb1" className="checkboxLabel"></label>
       <input
         className="todo-input"

@@ -81,6 +81,7 @@ export default function Home() {
       {todoValues.map((_, i) => {
         return (
           <Todo
+            id={i}
             key={i}
             value={todoValues[i]}
             onInput={e => {

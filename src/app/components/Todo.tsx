@@ -11,10 +11,11 @@ type Props = {
 };
 
 function Todo({id, value, onInput, onKeyDown, remove}: Props) {
+  console.log(id);
   return (
     <div>
-      <input type="checkbox" id={id} />
-      <label htmlFor="cb1" className="checkboxLabel"></label>
+      <input type="checkbox" id={String(id)} />
+      <label htmlFor={String(id)} className="checkboxLabel"></label>
       <input
         className="todo-input"
         type="text"
